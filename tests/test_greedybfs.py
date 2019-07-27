@@ -6,7 +6,7 @@
 
 import unittest
 
-from greedybfs import greedybfs
+from greedybfs.greedybfs import gbfs
 
 
 class TestGreedybfs(unittest.TestCase):
@@ -20,3 +20,9 @@ class TestGreedybfs(unittest.TestCase):
 
     def test_000_something(self):
         """Test something."""
+        test_graph = {
+            "a": [['s',253], ['t', 329], ['z',374]],
+            "s": [['f', 176], ['o', 380], ['r', 193]],
+            "f": [['b', 0]]
+        }
+        assert gbfs('a','b',test_graph) == ['s', 'f', 'b']
