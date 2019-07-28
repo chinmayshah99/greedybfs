@@ -1,28 +1,17 @@
-# Config file for automatic testing at travis-ci.org
-
 language: python
 python:
-  - 3.7
-  - 3.6
-  - 3.5
-  - 3.4
-
-# Command to install dependencies, e.g. pip install -r requirements.txt --use-mirrors
+- 3.7
+- 3.6
+- 3.5
+- 3.4
 install: pip install -U tox-travis
-
-# Command to run tests, e.g. python setup.py test
 script: tox
-
-# Assuming you have installed the travis-ci CLI tool, after you
-# create the Github repo and add it to Travis, run the
-# following command to finish PyPI deployment setup:
-# $ travis encrypt --add deploy.password
 deploy:
   provider: pypi
   distributions: sdist bdist_wheel
-  user: chinmayshah99
+  user: chinmays99
   password:
-    secure: Z+rPKhAmMNFMLD1tqbObMi9TeOw+EOF9z7DZnpR8xlFPWK2bgnJxMMjYzAUwaTbgl8rgJ+5FBBQ8otN4jtHc/KdnqrTm61VF8S8+G+tZAdl2/HT2MftEp1Nk0eCROmhZ4wgN/Z15rwdUdZoACz1ezDVe8DknBaFnvWwqb88PkHkBCdo4Ya3zuRAWTL3+4MWx6Raqppq+iYC5uyucjRZzC1OKNpiEwrTaEtpVPSircZjMGiZXBFVtOP6XF31Oa3mRE42yumcfcFeTEPNndukqjtTZKGfFYXgyLewrhY6g7n7V0LyJ4ZAAKIw3PYBA68bLHn4k6IsTXtjOYoAxc10cRMZgMdrF6GVMnnGBxtwdSx1m+IU68bxIFqxoywZzr8RQokW2dXGXAKE0J4HitNI+fsZj9vqdM9FX7fxgsgBSxKoMYTwY57v1lcxNvPFvLFTByhNFRaFo1QJG5w0vOdbNbSb0oP1Qo3XGiccf9Y+a/5VbwNpLvOI+FpiaKGLUI8+GxWCKWevT2yVYG3ScMRJ3nG5Fvz5ksuReSg1NMXjE857s3JFIxaYda6qtl/h9eATV7E2qlQZT22410ZlqdrAwtQCHUjAEhOfMZrX6IDpwjLYdX4D8gYpgRmJRdYIGB3CrgpFgbnc+/SsuchrRc0FYoG6JOMz+s9ITQahc2gVQZ94=
+    secure: WIMRRmBdsM9myDWfAkm4YUhe446+pMAO3aVDO/ICHsevmNn7Hfkxq18Qn+gBG9p/smsmna1BDic9Wc1lfu7oTzZgndPd6aFzHHoLRN9vpuHmACPHNjp7CAgRcxpAesrYtWaMAxt+DQpkwTT9s9jPyU86PnXd2TjxbWuGe4p+qxlopdyCbtqH4ZJII25LVE1PjYQvBopEEZG1fhKtOzgRcCjZ9SbpWdU7NpuhSzHi+HWOe3jf5V3P21+XhE/XPCKH9E+tvXfFy49mRzNAkwAjvvl5pzYISVVv9RWNuucBMN7HXC8oUs5Wv3uxdNDBmv7N5BFi4Rh08gEZDNfuflK0OPUY/Wph2s10HIWV7eMlPP0mBMiSuZ8Wgm3fy0vDgyuhFqYjy0ZzMUGSDZooF0CykB2uPZ8Bnwm76jAEO4eB4t7YeaSbjsRs7unAWiEAuzppBZxTR0/jhjUxZ9e1Rw2uxPp7xYumnvARxxfNe3+M1fz55If9ulAKD8DEFa0Hvv9A+Cu5mwabR3W5fOPgot9lw7FBuBfc4wa4+97cARDyJsfwDLEQFMIa8gwCgmCTqa6rVuabOWzUz0Njw+aPXejwqCgHuQ1MOeC3etUC3IqXFkk4Uj5wYSnRdUVxXPgSr5iPMzBkuytvYt62cXafDURz/8z13BYKE4ZDO5FO17ZI/aw=
   on:
     tags: true
     repo: chinmayshah99/greedybfs
