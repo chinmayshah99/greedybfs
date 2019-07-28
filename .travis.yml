@@ -2,6 +2,7 @@
 
 language: python
 python:
+  - 3.7
   - 3.6
   - 3.5
   - 3.4
@@ -21,7 +22,7 @@ deploy:
   distributions: sdist bdist_wheel
   user: chinmayshah99
   password:
-    secure: PLEASE_REPLACE_ME
+    secure: a4+AjIBsMvTyeyIS1Nj107Mk1+yZ2iuhqjX41NmHStL6lR+BAR3grbBRIEZ3k7Zca3wkBUy+s2Gm0CxwR0JsLRANJnLdnLk8Y7hJZry/NPzNSxvs/mF1EOdNvbY+Iw+5dkVOhXb4uINWZrkQWjsA5Kg1O930NWiBShBni+1vuKnJ4YOc1pvbO7AI72lDKkOnHrlMjGXOUVml8uwcF6Gd6HrDVghH83wSv4VdSPIrLtLYO+nDJ2mcIWLWmPJsHgId+5zJtTXj8rkdHF1xc8tyTfvy6t2xyfEsJZUSpNI9ZfGnfznlX6khZzbbP+YuBt5gXaFShGwHQOCVCBAKqt+hvnC9AZanFie6res/JiHdIONqGm/VbEYyb9Gqr0akJruKOzDo9ArmkSsaPtnhVj/RO6OeR48O5pZeBmaY9EgfNh1ajW5U67mUWbfhQGA5azhSx7ztaeAG6f/cWKFoRJosE2VtzWy8EKcJgy2uoJhYKExNmBA+1d+0zTC0af1hMj1/4CJbihfoX3lxYWuVXijiA2RLoCE/Zu9n/ge4H+2AhO19BBqsLB3viWVKlvmlyKO6474fxjg6BtV6mIl8ci1nVZRoBatJRFmex77MMOxHho8uv97d6qRbg/K8X3NE79qx9WLDxaK/+N3MQKsGfuIqAxpTvFTT1O6HIZQeDnlD7ZI=
   on:
     tags: true
     repo: chinmayshah99/greedybfs

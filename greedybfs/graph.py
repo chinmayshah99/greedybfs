@@ -7,10 +7,7 @@ class Graph(object):
         }
     '''
     def __init__(self):
-
-        self.graph = {
-
-        }
+        self.graph = {}
 
     def __init__(self, graph):
         self.graph = graph
