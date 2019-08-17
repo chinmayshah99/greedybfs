@@ -47,8 +47,9 @@ class Graph(object):
 
     def add_edge(self, start_node, end_node, weight=1):
         '''
-            Adds edge
+            Adds edge from start_node to end_node
             If weight is not specified, defaults to one
+            If the edge already exists, updates the weight to given in argument
         '''
 
         # check if start node already exists
@@ -66,6 +67,16 @@ class Graph(object):
         if end_node not in self._graph:
             warnings.warn("Node {} does not exist, adding it to graph".format(str(end_node)), Warning)
             self.add_node(end_node)
+
+        if not self._is_number(weight):
+            raise ValueError("{} is not a valid Number".format(weight))
+
+        edges = self._graph[start_node]
+        for edge in edges:
+            if edge[0] == end_node:
+                warnings.warn("Edge already exists with weight {}, updating it to {}".format(str(edge[1]), str(weight)), Warning)
+                edge[1] = weight
+                return
 
         self._graph[start_node].append([end_node, weight])
         self._edge_count += 1
@@ -146,12 +157,15 @@ class Graph(object):
         if weight is None:
             self.delete_edge(start_node, end_node)
 
+        if not self._is_number(weight):
+            raise ValueError("{} is not a valid Number".format(weight))
+
         edges = self._graph[start_node]
         for edge in edges:
             if edge[0] == end_node:
                 edge[1] = weight
                 return
-        
+
         raise AttributeError("Edge from {} to {} does not exist".format(start_node, end_node))
 
     @property
@@ -191,3 +205,10 @@ class Graph(object):
                 return edge[1]
 
         raise AttributeError("Edge does not exist")
+
+    def _is_number(self, number):
+        try:
+            float(number)
+            return True
+        except ValueError:
+            return False
