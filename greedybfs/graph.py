@@ -64,14 +64,14 @@ class Graph(object):
             #TODO
         '''
         self.graph.pop(node, None)
-        self._edge_count -=1
+        self._node_count -=1
 
     def delete_edge(self, node_start, node_end):
         edges = self.graph[node_start]
         for item in edges:
             if item[0] == node_end:
                 self.graph[node_start].remove(item)
-
+        
         self._edge_count -=1
         
     def get_node_details(self, node):
