@@ -4,7 +4,6 @@ from .priorityQueue import PriorityQueue
 from .graph import Graph
 
 
-
 def gbfs(start_node, end_node, graph_input={}):
     path = []
     myQueue = PriorityQueue()
@@ -18,7 +17,7 @@ def gbfs(start_node, end_node, graph_input={}):
     current_node = [start_node]
 
     while current_node[0] != end_node:
-        current_node = graph.get_node_details(current_node[0])
+        current_node = graph.return_edges(current_node[0])
         myQueue.makeEmpty()
 
         for item in current_node:
