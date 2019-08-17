@@ -29,14 +29,14 @@ class Graph(object):
 
     def add_node(self, node):
         '''
-            Adds node
+            Adds node to the graph.
             If it already exists, raise an Error
         '''
         if node not in self._graph:
             self._graph[node] = []
             self._node_count += 1
         else:
-            raise ValueError("Node already exists in graph")
+            raise ValueError("Node " + str(node) + " already exists in graph")
 
     def add_node_from(self, nodes):
         '''
@@ -45,35 +45,37 @@ class Graph(object):
         '''
         pass
 
-    def add_edge(self, node_start, node_end, weight=1):
+    def add_edge(self, start_node, end_node, weight=1):
         '''
             Adds edge
             If weight is not specified, defaults to one
         '''
 
         # check if start node already exists
-        if node_start not in self._graph:
-            warnings.warn('The start node does not exist, adding it to graph', Warning)
-            self.add_node(node_start)
-            edges = self._graph[node_start]
+        if start_node not in self._graph:
+            warnings.warn("Node {} does not exist, adding it to graph".format(str(start_node)), Warning)
+            self.add_node(start_node)
+        edges = self._graph[start_node]
 
         # check if edge already exists)
         for edge in edges:
-            if edge[0] == node_end:
+            if edge[0] == end_node:
                 raise ValueError("Edge already exiists")
 
         # check if end node already exists
-        if node_end not in self._graph:
-            warnings.warn('The end node does not exist, adding it to graph', Warning)
-            self.add_node(node_end)
+        if end_node not in self._graph:
+            warnings.warn("Node {} does not exist, adding it to graph".format(str(end_node)), Warning)
+            self.add_node(end_node)
 
-        self._graph[node_start].append([node_end, weight])
+        self._graph[start_node].append([end_node, weight])
         self._edge_count += 1
 
     def delete_node(self, node):
         '''
             Removoes all node dependecnies and then removes node
         '''
+        if node not in self._graph:
+            raise AttributeError("Node " + str(node) + " does not exist")
 
         for key, values in self._graph.items():
             if key == node:
@@ -88,22 +90,22 @@ class Graph(object):
         self._graph.pop(node, None)
         self._node_count -= 1
 
-    def delete_edge(self, node_start, node_end):
+    def delete_edge(self, start_node, end_node):
 
-        if node_start not in self._graph:
-            raise ValueError("The Start node does not exist")
+        if start_node not in self._graph:
+            raise AttributeError("Node " + str(start_node) + " does not exist")
 
-        elif node_end not in self._graph:
-            raise ValueError("The End node does not exist")
+        elif end_node not in self._graph:
+            raise AttributeError("Node " + str(end_node) + " does not exist")
 
-        edges = self._graph[node_start]
+        edges = self._graph[start_node]
         for edge in edges:
-            if edge[0] == node_end:
-                self._graph[node_start].remove(edge)
+            if edge[0] == end_node:
+                self._graph[start_node].remove(edge)
 
         self._edge_count -= 1
 
-    def delete_edge_from(self, node_start, node_end):
+    def delete_edge_from(self, start_node, end_node):
         # TODO
         pass
 
@@ -125,28 +127,32 @@ class Graph(object):
             return temp_dict
 
         else:
-            raise ValueError("Node does not exist")
+            raise AttributeError("Node " + str(node) + " does not exist")
 
-    def update_edge(self, node_start, node_end, weight=None):
+    def update_edge(self, start_node, end_node, weight=None):
         '''
             Updates the weight of the edge
             if the new weight is not specified, it deletes that edge
+            if the edge is not found, it raise an error
         '''
 
         # check if nodes already exists
-        if node_start not in self._graph:
-            raise ValueError("The Start node does not exist")
+        if start_node not in self._graph:
+            raise AttributeError("Node " + str(start_node) + " does not exist")
 
-        elif node_end not in self._graph:
-            raise ValueError("The End node does not exist")
+        elif end_node not in self._graph:
+            raise AttributeError("Node " + str(end_node) + " does not exist")
 
         if weight is None:
-            self.delete_edge(node_start, node_end)
+            self.delete_edge(start_node, end_node)
 
-        edges = self._graph[node_start]
+        edges = self._graph[start_node]
         for edge in edges:
-            if edge[0] == node_end:
+            if edge[0] == end_node:
                 edge[1] = weight
+                return
+        
+        raise AttributeError("Edge from {} to {} does not exist".format(start_node, end_node))
 
     @property
     def nodes(self):
@@ -164,6 +170,24 @@ class Graph(object):
 
     def return_edges(self, node):
         if node not in self._graph:
-            raise ValueError("The Node does not exist")
+            raise AttributeError("Node " + str(node) + " does not exist")
         else:
             return self._graph[node]
+
+    def get_edge(self, start_node, end_node):
+        '''
+            Returns the edge weight, raise AttributeError incase edge does not exist
+        '''
+
+        if start_node not in self._graph:
+            raise AttributeError("Node " + str(start_node) + " does not exist")
+
+        elif end_node not in self._graph:
+            raise AttributeError("Node " + str(end_node) + " does not exist")
+
+        edges = self._graph[start_node]
+        for edge in edges:
+            if edge[0] == end_node:
+                return edge[1]
+
+        raise AttributeError("Edge does not exist")
