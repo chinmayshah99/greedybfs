@@ -11,11 +11,18 @@ class Graph(object):
         }
     '''
 
-    def __init__(self, graph={}):
+    def __init__(self, graph=None):
         '''
             sdfs
         '''
-        self._graph = graph
+        if graph is None:
+            graph = dict()
+            self._graph = graph
+        elif isinstance(graph, dict):
+            self._graph = graph
+        else:
+            ValueError("Graph should be a dictionary")
+
         self._node_count = 0
         self._edge_count = 0
 
